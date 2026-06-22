@@ -78,20 +78,20 @@ local function getDefaultConfig()
             Galaxy = "rbxassetid://122271132142798"
         },
         CustomSounds = {
-            Minecraft = "rbxassetid://8766809464",
-            Simple = "rbxassetid://3748776946",
-            Bing = "rbxassetid://6607204501",
-            Skeet = "rbxassetid://5633695679",
-            Rust = "rbxassetid://1255040462",
-            Pick = "rbxassetid://1347140027",
-            Shine = "rbxassetid://5693220817",
+            DC_15X = "rbxassetid://936447863",
             Neverlose = "rbxassetid://8679627751",
-            Metal = "rbxassetid://8917041751",
-            Shield = "rbxassetid://140073271098075",                                                                
-            Headshot = "rbxassetid://2513174484",
-            Grrr = "rbxassetid://8603227350", 
-            Rizz = "rbxassetid://89848519630209",
-            Mommy = "rbxassetid://90759147003294"
+            Minecraft = "rbxassetid://8766809464",
+            MinecraftHit2 = "rbxassetid://8458185621",
+            ["Teamfortress Bonk"] = "rbxassetid://8255306220",
+            ["Teamfortress Bell"] = "rbxassetid://2868331684",
+            Excalibur = "rbxassetid://153613030",
+            Masamune = "rbxassetid://99803221089826",
+            Muramasa = "rbxassetid://98608144972892",
+            ["Soul Edge"] = "rbxassetid://130037857404629",
+            Ragnarok = "rbxassetid://82442955130305",
+            ["Dark Repulser"] = "rbxassetid://16008606789",
+            Elucidator = "rbxassetid://78618347958652",
+            ["Dragon Slayer"] = "rbxassetid://78833978912349",
         }
     }
 end
