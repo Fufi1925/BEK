@@ -469,7 +469,7 @@ enviorment:Toggle({
             if not fullbrightConnection then
                 fullbrightConnection = RunService.RenderStepped:Connect(function()
                     if fullbrightState then
-                        Lighting.Brightness = 0.3
+                        Lighting.Brightness = 1
                         Lighting.GlobalShadows = false
                         Lighting.OutdoorAmbient = Color3.fromRGB(255, 255, 255)
                     end
