@@ -428,18 +428,16 @@ skyinput = enviorment:Input({
     end
 })
 
-environment:Button({
+enviorment:Button({
     Title = "No Disturbance",
     Desc = "Delete Atmosphere & SunRays",
     Callback = function()
-        local Lighting = game:GetService("Lighting")
-
-        local atm = Lighting:FindFirstChildOfClass("Atmosphere")
+        local atm = game:GetService("Lighting"):FindFirstChildOfClass("Atmosphere")
         if atm then
             atm:Destroy()
         end
 
-        local sunRays = Lighting:FindFirstChildOfClass("SunRaysEffect")
+        local sunRays = game:GetService("Lighting"):FindFirstChildOfClass("SunRaysEffect")
         if sunRays then
             sunRays:Destroy()
         end
