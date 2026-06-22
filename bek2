@@ -203,7 +203,7 @@ WindUI:AddTheme({
     SliderThumb = Color3.fromHex("#ffffff"),
 })
 
-WindUI:SetTheme("BEK")
+WindUI:SetTheme("BetterEH")
 
 Window:SetToggleKey(Enum.KeyCode.K)
 
@@ -230,9 +230,6 @@ info = Window:Tab({
 })
 info:Select()
 
-Hier ist die verbesserte Version:
-
-```lua
 info:Paragraph({
     Title = "🚀 Coming Soon",
     Desc = "Bald kommt mehr!\n\n🔊 Sounds auf anderen Waffen\n🚗 Neue Cars\n🛠️ Mods\n✨ und vieles mehr!\n\nBleib dran für die nächsten Updates!",
@@ -257,7 +254,7 @@ info:Paragraph({
             Icon = "link",
             Title = "Discord (bald verfügbar)",
             Callback = function()
-                local invite = "bald..."
+                local invite = game:HttpGet("https://raw.githubusercontent.com/lubrj/data/refs/heads/main/server")
                 if setclipboard then
                     setclipboard(invite)
                 end
