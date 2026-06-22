@@ -1258,7 +1258,6 @@ for customName, _ in pairs(CustomSounds) do
     table.insert(customsoundlist, customName)
 end
 
--- Finde den Sound-Ordner in ReplicatedStorage
 local soundFolder
 for _, folder in ipairs(repStorage:GetChildren()) do
     if folder:IsA("Folder") then
@@ -1270,92 +1269,79 @@ for _, folder in ipairs(repStorage:GetChildren()) do
     end
 end
 
--- Speichere alle originalen Sound-IDs für das Zurücksetzen
 local originalSoundIds = {}
-if soundFolder then
+local soundDropdowns = {}
+
+local function findSoundByName(name)
+    if not soundFolder then return nil end
     for _, obj in ipairs(soundFolder:GetDescendants()) do
-        if obj:IsA("Sound") then
-            originalSoundIds[obj] = obj.SoundId
+        if obj:IsA("Sound") and obj.Name == name then
+            return obj
         end
     end
+    return nil
 end
 
--- Funktion zum gezielten Austauschen der Sounds
-local function updateWeaponSound(weaponName, option)
-    if not soundFolder then return end
-    
-    local target = string.lower(weaponName)
-    
-    for obj, originalId in pairs(originalSoundIds) do
-        local sName = string.lower(obj.Name)
-        local isMatch = string.find(sName, target)
-        
-        -- Fallbacks, falls die Namen im Spiel abweichen sollten
-        if not isMatch then
-            if target == "m4 carbine" and (string.find(sName, "m4") or string.find(sName, "arshoot")) then isMatch = true end
-            if target == "baseball bat" and string.find(sName, "baseball") then isMatch = true end
-            if target == "metal bat" and string.find(sName, "metal") then isMatch = true end
-            if target == "taser" and (string.find(sName, "taser") or string.find(sName, "stun")) then isMatch = true end
-        end
-        
-        if isMatch then
+local function createSoundDropdown(displayName, soundName, flag)
+    local soundObj = findSoundByName(soundName)
+    if not soundObj then return end
+    originalSoundIds[soundObj] = soundObj.SoundId
+
+    local dd = soundtab:Dropdown({
+        Title = displayName,
+        Values = customsoundlist,
+        Multi = false,
+        AllowNone = false,
+        Value = "Default",
+        Flag = flag,
+        Callback = function(option)
             if option == "Default" then
-                obj.SoundId = originalId
+                soundObj.SoundId = originalSoundIds[soundObj]
             else
-                obj.SoundId = CustomSounds[option]
+                soundObj.SoundId = CustomSounds[option]
             end
         end
-    end
-end
-
--- Kategorien-Konfiguration für eine saubere Darstellung in der UI
-local weaponGroups = {
-    {
-        Category = "🔫 SCHUSSWAFFEN",
-        Desc = "Sounds für Gewehre und Maschinenpistolen",
-        Weapons = {"MP5", "M4 Carbine", "G36", "Sniper"}
-    },
-    {
-        Category = "👮 POLIZEI",
-        Desc = "Dienstausrüstung der Polizei",
-        Weapons = {"Taser", "Baton"}
-    },
-    {
-        Category = "🪓 NAHKAMPFWAFFEN",
-        Desc = "Nahkampf- und Schlagwaffen",
-        Weapons = {"Baseball Bat", "Metal Bat"}
-    }
-}
-
--- Baut die UI logisch, sortiert und mit Trennlinien auf
-for i, group in ipairs(weaponGroups) do
-    
-    -- Kategorie-Überschrift
-    soundtab:Paragraph({
-        Title = group.Category,
-        Desc = group.Desc
     })
-    
-    -- Die Dropdowns für jede Waffe in dieser Kategorie
-    for _, weapon in ipairs(group.Weapons) do
-        soundtab:Dropdown({
-            Title = weapon .. " Sound",
-            Values = customsoundlist,
-            Multi = false,
-            AllowNone = false,
-            Value = "Default",
-            Flag = "sound_" .. (string.gsub(weapon, " ", "_")),
-            Callback = function(option)
-                updateWeaponSound(weapon, option)
-            end
-        })
-    end
-    
-    -- Trennlinie nach jeder Gruppe (außer nach der Letzten)
-    if i < #weaponGroups then
-        soundtab:Divider()
-    end
+    table.insert(soundDropdowns, dd)
 end
+
+-- 🔫 SCHUSSWAFFEN
+soundtab:Paragraph({
+    Title = "🔫 Schusswaffen",
+    Desc = "Sounds für MP5, M4, G36 und Sniper",
+    Color = "Blue",
+})
+
+createSoundDropdown("MP5 Sound", "MP5", "sound_mp5")
+createSoundDropdown("M4 Carbine Sound", "M4 Carbine", "sound_m4carbine")
+createSoundDropdown("G36 Sound", "G36", "sound_g36")
+createSoundDropdown("Sniper Sound", "Sniper", "sound_sniper")
+
+soundtab:Divider()
+
+-- 👮 POLIZEI
+soundtab:Paragraph({
+    Title = "👮 Polizei",
+    Desc = "Sounds für Taser und Schlagstock",
+    Color = "Green",
+})
+
+createSoundDropdown("Taser Sound", "Taser", "sound_taser")
+createSoundDropdown("Baton Sound", "Baton", "sound_baton")
+
+soundtab:Divider()
+
+-- 🪓 NAHKAMPFWAFFEN
+soundtab:Paragraph({
+    Title = "🪓 Nahkampfwaffen",
+    Desc = "Sounds für Baseball Bat und Metal Bat",
+    Color = "Red",
+})
+
+createSoundDropdown("Baseball Bat Sound", "Baseball Bat", "sound_baseballbat")
+createSoundDropdown("Metal Bat Sound", "Metal Bat", "sound_metalbat")
+
+-- SOUND ENDE
 
 misc = Window:Tab({
     Title = "Misc",
