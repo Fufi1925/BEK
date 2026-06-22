@@ -119,7 +119,7 @@ CustomSounds = config.CustomSounds
 local Window = WindUI:CreateWindow({
     Title = "BEK",
     Icon = "crown",
-    Author = "made by Fufi buy by Vexo",
+    Author = "by Fufi and Vexo",
     Folder = "BEK",
     Resizable = false,
 })
@@ -230,34 +230,34 @@ info = Window:Tab({
 })
 info:Select()
 
+Hier ist die verbesserte Version:
+
+```lua
 info:Paragraph({
-    Title = "Über dieses Script",
-    Desc = "Kein Cheat – nur zur Verbesserung von EH und für Cosmetics.\n\nAchtung: Wird weiterverkauft. Der offizielle Discord heißt 'BetterEH'.",
-    Color = "Red",
+    Title = "🚀 Coming Soon",
+    Desc = "Bald kommt mehr!\n\n🔊 Sounds auf anderen Waffen\n🚗 Neue Cars\n🛠️ Mods\n✨ und vieles mehr!\n\nBleib dran für die nächsten Updates!",
+    Color = "Blue",
     Buttons = {
         {
-            Icon = "link",
-            Title = "BetterEH Discord",
+            Icon = "info",
+            Title = "Mehr Infos bald",
             Callback = function()
-                local invite = game:HttpGet("https://raw.githubusercontent.com/lubrj/data/refs/heads/main/server")
-                if setclipboard then
-                    setclipboard(invite)
-                end
+                -- Platzhalter für zukünftigen Inhalt
             end,
         }
     }
 })
 
 info:Paragraph({
-    Title = "About This Script",
-    Desc = "Not a cheat – made to improve EH and add cosmetics.\n\nWarning: Being resold. Official Discord is 'BetterEH'.",
-    Color = "Red",
+    Title = "ℹ️ About This Script",
+    Desc = "Dies ist KEIN Cheat! ❌\n\nDieses Script wurde erstellt, um EH zu verbessern und coole Cosmetics hinzuzufügen. 🎨\n\nEs geht nur um mehr Spaß und Style – nicht ums Schummeln!\n\n💬 Ein offizieller Discord-Server kommt bald – bleib gespannt!",
+    Color = "Green",
     Buttons = {
         {
             Icon = "link",
-            Title = "Join BetterEH",
+            Title = "Discord (bald verfügbar)",
             Callback = function()
-                local invite = game:HttpGet("https://raw.githubusercontent.com/lubrj/data/refs/heads/main/server")
+                local invite = "bald..."
                 if setclipboard then
                     setclipboard(invite)
                 end
