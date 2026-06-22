@@ -10,7 +10,7 @@ local vu = game:GetService("VirtualUser")
 local repStorage = game:GetService("ReplicatedStorage")
 
 function updateconfig()
-    writefile("WindUI/BetterEH/values.json", HttpService:JSONEncode({
+    writefile("WindUI/BEK/values.json", HttpService:JSONEncode({
         Skys = Skys,
         WeaponSkins = WeaponSkins,
         GearSkins = GearSkins
@@ -101,13 +101,13 @@ local function getDefaultConfig()
     }
 end
 
-if not isfolder("Better Eh") then
-    makefolder("Better Eh")
+if not isfolder("BEK") then
+    makefolder("BEK")
 end
 
 local success, config = pcall(function()
-    if isfile("WindUI/BetterEH/values.json") then
-        return HttpService:JSONDecode(readfile("WindUI/BetterEH/values.json"))
+    if isfile("WindUI/BEK/values.json") then
+        return HttpService:JSONDecode(readfile("WindUI/BEK/values.json"))
     end
 end)
 
@@ -208,7 +208,7 @@ WindUI:AddTheme({
     SliderThumb = Color3.fromHex("#ffffff"),
 })
 
-WindUI:SetTheme("BetterEH")
+WindUI:SetTheme("BEK")
 
 Window:SetToggleKey(Enum.KeyCode.K)
 
