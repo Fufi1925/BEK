@@ -203,7 +203,7 @@ WindUI:AddTheme({
     SliderThumb = Color3.fromHex("#ffffff"),
 })
 
-WindUI:SetTheme("BetterEH")
+WindUI:SetTheme("BEK")
 
 Window:SetToggleKey(Enum.KeyCode.K)
 
